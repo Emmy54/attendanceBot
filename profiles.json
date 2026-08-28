@@ -1,0 +1,16 @@
+{
+  "weekday-morning": {
+    "label": "Weekday 09:35 WAT",
+    "attendanceType": "MESSAGE",
+    "message": "Present",
+    "maxJitterMinutes": 10,
+    "type": "RECURRING"
+  },
+  "weekday-afternoon": {
+    "label": "Weekday 15:05 WAT",
+    "attendanceType": "MESSAGE",
+    "message": "Present",
+    "maxJitterMinutes": 10,
+    "type": "RECURRING"
+  }
+}
