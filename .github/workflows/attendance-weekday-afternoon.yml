@@ -1,0 +1,42 @@
+# 15:05 WAT (UTC+1, no DST) == 14:05 UTC, Monday–Friday.
+# Serverless attendance: spin up, send ONE message, exit.
+name: "Attendance - Weekday Afternoon (15:05 WAT)"
+
+on:
+  schedule:
+    - cron: "5 14 * * 1-5"
+  workflow_dispatch: {} # allow manual runs from the Actions tab (for testing)
+
+# Least privilege: this job only needs to read the repo.
+permissions:
+  contents: read
+
+# Never let a manual run overlap a scheduled one; don't kill an in-flight send.
+concurrency:
+  group: attendance-weekday-afternoon
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20 # jitter can sleep up to MAX_JITTER_MINUTES
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Send attendance
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          MAX_JITTER_MINUTES: "10"
+        run: node src/run-once.js --profile=weekday-afternoon
