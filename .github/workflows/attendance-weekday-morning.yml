@@ -38,5 +38,5 @@ jobs:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          MAX_JITTER_MINUTES: "10"
+          MAX_JITTER_MINUTES: "0"
         run: node src/run-once.js --profile=weekday-morning
