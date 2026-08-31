@@ -32,7 +32,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
+        
+      - name: Show schedule diagnostics
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Scheduled cron: ${{ github.event.schedule }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "UTC time: $(date -u)"
+          
       - name: Send attendance
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
