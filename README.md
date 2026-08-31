@@ -171,6 +171,6 @@ The project is licensed under the MIT License (see LICENSE file).
 
 Acknowledgements
 ----------------
-Built by IamAdedo and dlazyHNTR. Maintained and adapted by contributors.
+Built by IamAdedo and emmy54. Maintained and adapted by contributors.
 
 
