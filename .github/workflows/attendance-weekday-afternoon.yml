@@ -2,9 +2,7 @@
 # Serverless attendance: spin up, send ONE message, exit.
 name: "Attendance - Weekday Afternoon (15:05 WAT)"
 
-on:
-  schedule:
-    - cron: "5 14 * * 1-5"
+
   workflow_dispatch: {} # allow manual runs from the Actions tab (for testing)
 
 # Least privilege: this job only needs to read the repo.
